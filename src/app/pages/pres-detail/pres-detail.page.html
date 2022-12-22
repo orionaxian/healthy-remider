@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="prescription"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Prescription</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="delete()">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="prescription">
+        <ion-item>
+          <ion-label position="stacked">tên bệnh</ion-label>
+          <ion-input [(ngModel)]="prescription.pre_name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Patient Name</ion-label>
+            <ion-select [(ngModel)]="prescription.patientName">
+              <ion-select-option *ngFor="let pat of patients" [value]="pat.id">{{ pat.patient_name }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        
+        <div class="table">
+          <ion-title page center text-center padding>( TÊN BỆNH )</ion-title>
+          <ion-grid>
+            <ion-row>
+                <ion-col class="tb_title" >Tên Thuốc</ion-col>
+                <ion-col class="tb_title"> Số Lượng</ion-col>
+                <ion-col class="tb_title" >Hình Ảnh</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>  
+                  Panadol 
+                </ion-col>
+                <ion-col>
+                  10 viên
+                  <br>
+                  <br>
+                  <i>( 3 lần/ngày, mỗi lần 1 viên )</i>
+                </ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col> Digoxin</ion-col>
+                <ion-col> 
+                  5 viên
+                  <br>
+                  <br>
+                  <i>( 3 lần/ngày, mỗi lần 1 viên )</i>
+                </ion-col> 
+                <ion-col></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>Diovan </ion-col>
+                <ion-col>
+                  20 viên
+                  <br>
+                  <br>
+                  <i>( 3 lần/ngày, mỗi lần 1 viên )</i>
+                </ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <ion-button expand="block" (click)="updatePatient()">Update đơn thuốc</ion-button>
+       
+      </div>
+     
+</ion-content>

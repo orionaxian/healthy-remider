@@ -1,0 +1,7 @@
+{
+  "name": "MedRemind",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,71 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Patients</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+ 
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="pats">
+      <ion-label>Patients</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pres">
+      <ion-label>Prescription</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'pats'">
+      <ion-item>
+        <ion-label position="stacked">Full name</ion-label>
+        <ion-input [(ngModel)]="patient.patient_name" placeholder="name..."></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Patient id</ion-label>
+        <ion-input [(ngModel)]="patient.patient_id" placeholder="id..."></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Your image URL</ion-label>
+        <ion-input [(ngModel)]="patient.patient_img" placeholder="https://..."></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="addPatient()">Save</ion-button>
+ 
+      <ion-list>
+        <ion-item button *ngFor="let pat of patients" [routerLink]="['/', 'patients', pat.id]">
+          <ion-avatar slot="start">
+            <img [src]="pat.patient_img">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ pat.patient_name }}</h2>
+            <p>{{ pat.patient_id }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'pres'">
+      <ion-item>
+        <ion-label position="stacked">Prescription Name</ion-label>
+        <ion-input [(ngModel)]="prescription.pre_name" placeholder="Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Patient Name</ion-label>
+        <ion-select [(ngModel)]="prescription.patientName">
+          <ion-select-option *ngFor="let pat of patients" [value]="pat.id">{{ pat.patient_name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="addPrescription()">Add Prescription</ion-button>
+  
+      <ion-list>
+        <ion-item *ngFor="let presc of prescriptions | async " [routerLink]="['/', 'prescription', presc.presid]">
+          <ion-label>
+            <h2>{{ presc.pre_name }}</h2>
+            <p>Patient Name: {{ presc.patientName }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

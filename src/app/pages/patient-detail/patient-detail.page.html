@@ -1,0 +1,37 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="patients"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Patient</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="delete()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  
+    
+  <div *ngIf="patient">
+    <ion-item>
+      <ion-label position="stacked">Full name</ion-label>
+      <ion-input [(ngModel)]="patient.patient_name" placeholder="name..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Patient id</ion-label>
+      <ion-input [(ngModel)]="patient_id" placeholder="id..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Your image URL</ion-label>
+      <ion-input [(ngModel)]="patient.patient_img" placeholder="image"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="updatePatient()">Update Patient Info</ion-button>
+  </div>
+
+  
+
+</ion-content>

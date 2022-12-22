@@ -1,0 +1,27 @@
+
+<ion-header page center text-center>
+  <ion-toolbar>
+    <ion-title>
+      Create Schedule Notifications
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <br>
+  <ion-button expand="block" (click)="repeatingeveryMorning()">Every Morning</ion-button>
+  <ion-button expand="block" (click)="repeatingeveryAfternoon()">Every Afternoon</ion-button>
+  <ion-button expand="block" (click)="repeatingeveryNight()">Every Night</ion-button>
+  <ion-button expand="block" (click)="demoNotification()">Every Minute</ion-button>
+  <!--<ion-button expand="block" (click)="getAll()">Get All</ion-button>-->
+ 
+  <ion-list>
+    <ion-item *ngFor="let n of scheduled">
+      <ion-label text-wrap>
+        {{ n.id }} - {{ n.title }}
+        <p>Trigger: {{ n.trigger | json }} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+ 
+</ion-content>
